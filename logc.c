@@ -71,20 +71,24 @@ static void log_time(FILE *fp)
 	free(date);
 }
 
-void init_logger(const char *path, bool file)
+void init_logger(const char *path, bool file_flag)
 {
 	if(path != NULL)
 		log_path = path;
+	else
+		log_path = LOG_PATH;
 
-	output_file = file;
+	output_file = file_flag;
 }
 
 void logger(enum log_level level, const char *filename, const size_t line, const char *fmt, ...)
 {
-	FILE* fp = stderr;
+	FILE* fp = NULL;
 
 	if(output_file)
 		fp = open_log_file();
+	else
+		fp = stderr;
 
 	if(fp == stderr)
 		fprintf(fp, "%s%-9s : ", colors[level], log_level_str[level]);
@@ -95,10 +99,7 @@ void logger(enum log_level level, const char *filename, const size_t line, const
 
 	fprintf(fp, "[%s:%4zu] : ", filename, line);
 
-	va_list ap;
-	va_start(ap, fmt);
-	vfprintf(fp, fmt, ap);
-	va_end(ap);
+	PRINT_FORMAT_LOG(fp, fmt);
 
 	if(fp == stderr)
 		fprintf(fp, "%s\n", RESET_COLOR);

@@ -11,6 +11,12 @@ extern "C" {
 
 #define RESET_COLOR "\x1B[0m"
 
+#define PRINT_FORMAT_LOG(fp, fmt)	\
+	va_list ap;	\
+	va_start(ap, fmt);	\
+	vfprintf(fp, fmt, ap);	\
+	va_end(ap)
+
 enum log_level
 {
 	LL_INFO,
