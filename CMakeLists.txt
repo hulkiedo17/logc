@@ -22,22 +22,16 @@ set(LIB logc)
 set(SOURCE logc.c)
 set(HEADER logc.h)
 
-set(TEST1 testc_logc)
-set(TEST1_SOURCE tests/test.c)
-
-#set(TEST2 testcpp_logc)
-#set(TEST2_SOURCE tests/test.cpp)
+set(TEST testc_logc)
+set(TEST_SOURCE tests/test.c)
 
 add_library(${LIB} STATIC ${SOURCE} ${HEADER})
 add_library(lib::logc ALIAS ${LIB})
 
 target_include_directories(${LIB} PRIVATE "${CMAKE_SOURCE_DIR}")
 
-add_executable(${TEST1} ${TEST1_SOURCE})
-target_link_libraries(${TEST1} PRIVATE ${LIB})
-
-#add_executable(${TEST2} ${TEST2_SOURCE})
-#target_link_libraries(${TEST2} PRIVATE ${LIB})
+add_executable(${TEST} ${TEST_SOURCE})
+target_link_libraries(${TEST} PRIVATE ${LIB})
 
 install(TARGETS ${LIB} DESTINATION lib)
 install(FILES ${HEADER} DESTINATION include)
