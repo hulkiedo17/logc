@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <assert.h>
 #include <time.h>
 #include "logc.h"
 
@@ -42,6 +43,8 @@ static FILE* open_log_file(void)
 
 static void log_time(FILE *fp)
 {
+	assert(fp != NULL);
+
 	time_t t;
 	struct tm *ltm = NULL;
 	const char *d_time = NULL;
@@ -83,6 +86,8 @@ void init_logger(const char *path, bool file_flag)
 
 void logger(enum log_level level, const char *filename, const size_t line, const char *fmt, ...)
 {
+	assert(fmt != NULL);
+
 	FILE* fp = NULL;
 
 	if(output_file)
