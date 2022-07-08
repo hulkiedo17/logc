@@ -1,3 +1,36 @@
-# logc - small and simple c logger library
+# logc - c logger library
 
+This is a small and simple c logger library for C/C++.
 
+# compile
+
+To compile library, you need to run build.sh, like this:
+
+```sh
+$ ./build.sh
+```
+
+# usage
+
+To using library in your projects, you need to include logc.h header file, and link your code like this:
+
+```sh
+$ gcc [files...] -llogc [options...]
+```
+
+Also, before starting usage macros, initialize the logger, by calling init_logger(). Then you can use macros. Below you can see small example:
+
+```c
+#include <stdio.h>
+#include "logc.h"
+
+int main(void)
+{
+	// NULL and true means that logger will be used default path to log file
+	init_logger(NULL, true);
+
+	log_debug("test log #1");
+
+	log_warning("test log #2");
+}
+```
