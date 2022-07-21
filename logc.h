@@ -3,22 +3,11 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif /* __cplusplus */
 
+#ifndef __cplusplus
 #include <stdbool.h>
-
-/*
-   LOG_PATH - default path for logging
- */
-#define LOG_PATH "/var/log/logger.log"
-
-#define RESET_COLOR "\x1B[0m"
-
-#define PRINT_FORMAT_LOG(fp, fmt)	\
-	va_list ap;	\
-	va_start(ap, fmt);	\
-	vfprintf(fp, fmt, ap);	\
-	va_end(ap)
+#endif /* __cplusplus */
 
 enum log_level
 {
@@ -45,12 +34,13 @@ void logger(enum log_level level, const char *filename, const size_t line, const
 
    arguments:
    - path - path to the file where the logs will be output, if it's null, then LOG_PATH will be used.
-   - output_file - if it's true, the output will be to a file, otherwise it will be to stderr.
+   - output_file - if it's true, the output will be to a file, otherwise it will be to terminal.
  */
 void init_logger(const char *path, bool output_file);
 
 /*
-   log_* - default wrapped directives for logger function to use all log_level constants
+   log_info, log_error, log_warning, log_debug, log_trace, log_fatal - default wrapped directives
+   for logger function to use all log_level constants
  */
 #define log_info(...)		logger(LL_INFO, __FILE__, __LINE__, __VA_ARGS__)
 #define log_error(...)		logger(LL_ERROR, __FILE__, __LINE__, __VA_ARGS__)
@@ -61,6 +51,6 @@ void init_logger(const char *path, bool output_file);
 
 #ifdef __cplusplus
 }
-#endif
+#endif /* __cplusplus */
 
 #endif /* LOGC_H */

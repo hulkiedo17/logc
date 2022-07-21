@@ -32,6 +32,7 @@ target_include_directories(${LIB} PRIVATE "${CMAKE_SOURCE_DIR}")
 
 add_executable(${TEST} ${TEST_SOURCE})
 target_link_libraries(${TEST} PRIVATE ${LIB})
+target_include_directories(${TEST} PRIVATE "${CMAKE_SOURCE_DIR}")
 
 install(TARGETS ${LIB} DESTINATION lib)
 install(FILES ${HEADER} DESTINATION include)

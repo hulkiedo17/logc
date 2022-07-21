@@ -6,6 +6,16 @@
 #include <time.h>
 #include "logc.h"
 
+#define LOG_PATH "/var/log/logger.log"
+
+#define RESET_COLOR "\x1B[0m"
+
+#define PRINT_FORMAT_LOG(fp, fmt)	\
+	va_list ap;	\
+	va_start(ap, fmt);	\
+	vfprintf(fp, fmt, ap);	\
+	va_end(ap)
+
 static const char *log_path = LOG_PATH;
 static bool output_file = false;
 
