@@ -1,10 +1,10 @@
-# logc - c logger library
+# What is this?
 
 This is a small and simple c logger library for C/C++.
 
 You can see comments that describes the functions in library in logc.h file. Also you can see the options for build.sh script, just pass them -h option.
 
-# compile
+# How to compile
 
 To compile library, you need to run build.sh, like this:
 
@@ -12,7 +12,7 @@ To compile library, you need to run build.sh, like this:
 $ ./build.sh
 ```
 
-# usage
+# Usage
 
 To using library in your projects, you need to include logc.h header file, and link your code like this:
 
@@ -36,3 +36,4 @@ int main(void)
 	log_warning("test log #2");
 }
 ```
+
