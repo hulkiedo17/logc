@@ -68,7 +68,7 @@ static void log_time(FILE *fp)
 	d_time = asctime(ltm);
 	datetime = strchr(d_time, '\n');
 
-	length = datetime - d_time;
+	length = (size_t)(datetime - d_time);
 
 	date = calloc(length + 1, sizeof(char));
 	if(!date)
